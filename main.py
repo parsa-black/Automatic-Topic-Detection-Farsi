@@ -3,11 +3,11 @@ import pandas as pd
 from hazm import Normalizer, word_tokenize, Stemmer, stopwords_list
 
 # persica
-# Assuming your 'df' contains topic information in a column, we'll extract the topics
-df = pd.read_csv('persica.csv', on_bad_lines='skip')
+df = pd.read_csv('Data.csv', header=None, names=['Text', 'Label'])
 
-# head
-print(df.head())
+# Execute Topics
+topics = df['Label'].unique()
+topics_cleaned = [topic.strip().replace('"', '') for topic in topics]
 
 
 def preprocess_text(text):
@@ -57,3 +57,4 @@ def process_file(file_path):
 
 file_path = "test.txt"
 processed_tokens = process_file(file_path)
+print(topics_cleaned)
