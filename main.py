@@ -1,5 +1,13 @@
 import re
+import pandas as pd
 from hazm import Normalizer, word_tokenize, Stemmer, stopwords_list
+
+# persica
+# Assuming your 'df' contains topic information in a column, we'll extract the topics
+df = pd.read_csv('persica.csv', on_bad_lines='skip')
+
+# head
+print(df.head())
 
 
 def preprocess_text(text):
@@ -34,11 +42,11 @@ def process_file(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             text = file.read()
-            print("Text:\n", text[:500])  # Show First 500 Char
+            # print("Text:\n", text[:500])  # Show First 500 Char
 
             # Token
             processed_tokens = preprocess_text(text)
-            print("\nToken:\n", processed_tokens[:50])  # Show First 50 Token
+            # print("\nToken:\n", processed_tokens[:50])  # Show First 50 Token
 
             return processed_tokens
     except FileNotFoundError:
